@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import ProfileForm from '../../components/ProfileForm/ProfileForm';
 
 export default function Profile({ isCreating, isEditing }) {

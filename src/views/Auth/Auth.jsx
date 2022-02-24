@@ -16,11 +16,11 @@ export default function Auth({ isSigningUp = false }) {
     if (isSigningUp) {
       const resp = await signUpUser(email, password);
       setUser({ email: resp.email, id: resp.id });
-      history.replace('/');
+      history.replace('/confirmation');
     } else {
       const resp = await signInUser(email, password);
       setUser({ email: resp.email, id: resp.id });
-      history.replace('/');
+      history.replace('/profile');
     }
   };
 

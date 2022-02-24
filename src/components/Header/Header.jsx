@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { signOutUser } from '../../services/users';
 
 export default function Header() {
-  const { user } = useUser();
+  const { user, setUser } = useUser();
   const history = useHistory();
 
   const handleClick = () => {
@@ -14,6 +14,7 @@ export default function Header() {
 
   const handleLogout = async () => {
     await signOutUser();
+    setUser({});
   };
 
   return (

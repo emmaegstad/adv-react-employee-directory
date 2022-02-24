@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import Home from './views/Home/Home';
 import Auth from './views/Auth/Auth';
 import Profile from './views/Profile/Profile';
+import Confirmation from './views/Confirmation/Confirmation';
 
 export default function App() {
   return (
@@ -20,14 +21,17 @@ export default function App() {
           <Route path="/register">
             <Auth isSigningUp />
           </Route>
-          <Route exact path="/profile/:id">
+          <Route exact path="/profile">
             <Profile />
           </Route>
-          <Route path="/profile/:id/create">
+          <Route path="/profile/create">
             <Profile isCreating />
           </Route>
-          <Route path="/profile/:id/edit">
+          <Route path="/profile/edit">
             <Profile isEditing />
+          </Route>
+          <Route path="/confirmation">
+            <Confirmation />
           </Route>
         </Switch>
       </BrowserRouter>
