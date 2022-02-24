@@ -1,7 +1,12 @@
 import React from 'react';
-import EditProfile from '../../components/EditProfile/EditProfile';
-import CreateProfile from '../../components/CreateProfile/CreateProfile';
+import ProfileForm from '../../components/ProfileForm/ProfileForm';
 
-export default function Profile() {
-  return <div className="Profile"></div>;
+export default function Profile({ isCreating, isEditing }) {
+  return (
+    <div className="Profile">
+      <span>In the Profile...</span>
+      {isCreating && <ProfileForm isCreating />}
+      {isEditing && <ProfileForm isEditing />}
+    </div>
+  );
 }

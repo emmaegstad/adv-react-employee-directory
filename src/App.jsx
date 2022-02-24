@@ -3,11 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Home from './views/Home/Home';
 import Auth from './views/Auth/Auth';
-import Login from './views/Auth/Login/Login';
-import Register from './views/Auth/Register/Register';
 import Profile from './views/Profile/Profile';
-import CreateProfile from './components/CreateProfile/CreateProfile';
-import EditProfile from './components/EditProfile/EditProfile';
 
 export default function App() {
   return (
@@ -24,14 +20,14 @@ export default function App() {
           <Route path="/register">
             <Auth isSigningUp />
           </Route>
-          <Route exact path="/profile">
+          <Route exact path="/profile/:id">
             <Profile />
           </Route>
-          <Route path="/profile/create">
-            <CreateProfile />
+          <Route path="/profile/:id/create">
+            <Profile isCreating />
           </Route>
-          <Route path="/profile/edit">
-            <EditProfile />
+          <Route path="/profile/:id/edit">
+            <Profile isEditing />
           </Route>
         </Switch>
       </BrowserRouter>
