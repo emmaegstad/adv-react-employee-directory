@@ -1,12 +1,17 @@
 import { useState } from 'react';
-import ProfileForm from '../../components/ProfileForm/ProfileForm';
+import { useProfile } from '../../context/ProfileContext';
 
-export default function Profile({ isCreating, isEditing }) {
+export default function Profile() {
+  const { profile } = useProfile();
+
+  console.log(profile);
+
   return (
     <div className="Profile">
-      <span>In the Profile...</span>
-      {isCreating && <ProfileForm isCreating />}
-      {isEditing && <ProfileForm isEditing />}
+      <h2>{profile.name}'s Profile</h2>
+      <p>Email: {profile.email}</p>
+      <p>Birthday: {profile.birthday}</p>
+      <p>Bio: {profile.bio}</p>
     </div>
   );
 }

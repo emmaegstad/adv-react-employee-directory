@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import Home from './views/Home/Home';
 import Auth from './views/Auth/Auth';
 import Profile from './views/Profile/Profile';
+import ProfileForm from './views/ProfileForm/ProfileForm';
 import Confirmation from './views/Confirmation/Confirmation';
 
 export default function App() {
@@ -25,10 +26,10 @@ export default function App() {
             <Profile />
           </Route>
           <Route path="/profile/create">
-            <Profile isCreating />
+            <ProfileForm isCreating />
           </Route>
           <Route path="/profile/edit">
-            <Profile isEditing />
+            <ProfileForm isEditing />
           </Route>
           <Route path="/confirmation">
             <Confirmation />

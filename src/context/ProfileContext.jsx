@@ -1,20 +1,27 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { getProfile } from '../services/profiles';
 
 const ProfileContext = createContext();
 
 const ProfileProvider = ({ children }) => {
-  const currentProfile = getProfile();
-  const [profile, setProfile] = useState(
-    currentProfile
-      ? {
-          name: currentProfile.name,
-          email: currentProfile.email,
-          bio: currentProfile.bio,
-          birthday: currentProfile.birthday,
-        }
-      : {}
-  );
+  const [profile, setProfile] = useState({
+    name: '',
+    email: '',
+    bio: '',
+    birthday: '',
+  });
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await getProfile();
+        setProfile(response);
+      } catch (error) {
+        setProfile({ name: '', email: '', bio: '', birthday: '' });
+      }
+    };
+    fetchProfile();
+  }, []);
 
   const value = { profile, setProfile };
 
