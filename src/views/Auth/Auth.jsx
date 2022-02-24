@@ -2,26 +2,24 @@ import './Auth.css';
 import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
+import { signUpUser, signInUser } from '../../services/users.js';
 
 export default function Auth({ isSigningUp = false }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { user, setUser } = useUser();
+  const { setUser } = useUser();
   const history = useHistory();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (isSigningUp) {
-      setUser({
-        email: email,
-        password: password,
-      });
+      const resp = await signUpUser(email, password);
+      setUser({ email: resp.email, id: resp.id });
+      history.replace('/');
     } else {
-      setUser({
-        email: email,
-        password: password,
-      });
+      const resp = await signInUser(email, password);
+      setUser({ email: resp.email, id: resp.id });
       history.replace('/');
     }
   };

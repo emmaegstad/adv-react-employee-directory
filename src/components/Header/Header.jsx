@@ -1,7 +1,8 @@
 import './Header.css';
-import React from 'react';
+import { useState } from 'react';
 import { useUser } from '../../context/UserContext';
 import { useHistory } from 'react-router-dom';
+import { signOutUser } from '../../services/users';
 
 export default function Header() {
   const { user } = useUser();
@@ -11,6 +12,10 @@ export default function Header() {
     history.push('/login');
   };
 
+  const handleLogout = async () => {
+    await signOutUser();
+  };
+
   return (
     <div className="Header">
       <h1 className="header-title">Acme Employee Directory</h1>
@@ -18,7 +23,8 @@ export default function Header() {
         <span>
           {user.email ? `Signed-in as ${user.email}` : 'Not Signed In'}
         </span>
-        <button onClick={handleClick}>Log In</button>
+        {!user.email && <button onClick={handleClick}>Log In</button>}
+        {user.email && <button onClick={handleLogout}>Log Out</button>}
       </section>
     </div>
   );
