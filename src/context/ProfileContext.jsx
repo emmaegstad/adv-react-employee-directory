@@ -6,6 +6,7 @@ const ProfileContext = createContext();
 
 const ProfileProvider = ({ children }) => {
   const { user } = useUser();
+  const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState({
     name: '',
     email: '',
@@ -18,14 +19,17 @@ const ProfileProvider = ({ children }) => {
       try {
         const response = await getProfile();
         setProfile(response);
+        setLoading(false);
       } catch (error) {
         setProfile({ name: '', email: '', bio: '', birthday: '' });
+      } finally {
+        setLoading(false);
       }
     };
     fetchProfile();
   }, [user]);
 
-  const value = { profile, setProfile };
+  const value = { setLoading, profile, setProfile };
 
   return (
     <ProfileContext.Provider value={value}>{children}</ProfileContext.Provider>

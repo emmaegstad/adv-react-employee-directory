@@ -1,11 +1,21 @@
-import React from 'react';
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useHistory, Redirect } from 'react-router-dom';
 import { useProfile } from '../../context/ProfileContext';
+import { getProfile } from '../../services/profiles';
 
 export default function Profile() {
-  const { profile } = useProfile();
+  const { setProfile, profile, setLoading } = useProfile();
   const history = useHistory();
+
+  useEffect(async () => {
+    try {
+      const res = await getProfile();
+      setProfile(res);
+      setLoading(false);
+    } catch (err) {
+      history.push('/profile/create');
+    }
+  });
 
   const handleClick = () => {
     history.push('/profile/edit');
