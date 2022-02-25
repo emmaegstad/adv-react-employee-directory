@@ -1,7 +1,7 @@
 import './Header.css';
 import { useState } from 'react';
 import { useUser } from '../../context/UserContext';
-import { useProfile } from '../../context/ProfileContext';
+import { useProfile } from '../../hooks/useProfile';
 import { useHistory } from 'react-router-dom';
 import { signOutUser } from '../../services/users';
 

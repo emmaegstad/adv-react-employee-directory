@@ -2,7 +2,7 @@ import './Auth.css';
 import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
-import { useProfile } from '../../context/ProfileContext';
+import { useProfile } from '../../hooks/useProfile';
 import { signUpUser, signInUser } from '../../services/users.js';
 
 export default function Auth({ isSigningUp = false }) {

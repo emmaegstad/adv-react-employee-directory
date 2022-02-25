@@ -1,11 +1,7 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getProfile } from '../services/profiles';
-import { useUser } from '../context/UserContext';
 
-const ProfileContext = createContext();
-
-const ProfileProvider = ({ children }) => {
-  const { user } = useUser();
+const useProfile = () => {
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState({
     name: '',
@@ -34,23 +30,9 @@ const ProfileProvider = ({ children }) => {
       }
     };
     fetchProfile();
-  }, [user]);
+  }, []);
 
-  const value = { loading, setLoading, profile, setProfile };
-
-  return (
-    <ProfileContext.Provider value={value}>{children}</ProfileContext.Provider>
-  );
+  return { loading, setLoading, profile, setProfile };
 };
 
-const useProfile = () => {
-  const context = useContext(ProfileContext);
-
-  if (context === undefined) {
-    throw new Error('useUser must be used within a ProfileProvider');
-  }
-
-  return context;
-};
-
-export { ProfileContext, ProfileProvider, useProfile };
+export { useProfile };
