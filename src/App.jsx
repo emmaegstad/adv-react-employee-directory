@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 import Header from './components/Header/Header';
 import Home from './views/Home/Home';
 import Auth from './views/Auth/Auth';
@@ -22,15 +23,15 @@ export default function App() {
           <Route path="/register">
             <Auth isSigningUp />
           </Route>
-          <Route exact path="/profile">
+          <PrivateRoute exact path="/profile">
             <Profile />
-          </Route>
-          <Route path="/profile/create">
+          </PrivateRoute>
+          <PrivateRoute path="/profile/create">
             <ProfileForm isCreating />
-          </Route>
-          <Route path="/profile/edit">
+          </PrivateRoute>
+          <PrivateRoute path="/profile/edit">
             <ProfileForm isEditing />
-          </Route>
+          </PrivateRoute>
           <Route path="/confirmation">
             <Confirmation />
           </Route>

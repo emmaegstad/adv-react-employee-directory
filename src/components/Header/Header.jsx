@@ -1,11 +1,13 @@
 import './Header.css';
 import { useState } from 'react';
 import { useUser } from '../../context/UserContext';
+import { useProfile } from '../../context/ProfileContext';
 import { useHistory } from 'react-router-dom';
 import { signOutUser } from '../../services/users';
 
 export default function Header() {
   const { user, setUser } = useUser();
+  const { setProfile } = useProfile();
   const history = useHistory();
 
   const handleClick = () => {
@@ -15,6 +17,7 @@ export default function Header() {
   const handleLogout = async () => {
     await signOutUser();
     setUser({});
+    setProfile({});
   };
 
   return (

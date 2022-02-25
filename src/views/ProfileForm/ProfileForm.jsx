@@ -22,7 +22,7 @@ export default function ProfileForm({ isCreating = false, isEditing = false }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isCreating) {
-      await createProfile({ name, email, bio, birthday });
+      await createProfile({ name, email: user.email, bio, birthday });
       setProfile({ name, email: user.email, bio, birthday });
       history.push('/profile');
     } else if (isEditing) {

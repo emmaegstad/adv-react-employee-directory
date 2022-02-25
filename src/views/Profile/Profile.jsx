@@ -1,10 +1,15 @@
+import React from 'react';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useProfile } from '../../context/ProfileContext';
 
 export default function Profile() {
   const { profile } = useProfile();
+  const history = useHistory();
 
-  console.log(profile);
+  const handleClick = () => {
+    history.push('/profile/edit');
+  };
 
   return (
     <div className="Profile">
@@ -12,6 +17,7 @@ export default function Profile() {
       <p>Email: {profile.email}</p>
       <p>Birthday: {profile.birthday}</p>
       <p>Bio: {profile.bio}</p>
+      <button onClick={handleClick}>Edit</button>
     </div>
   );
 }

@@ -2,12 +2,14 @@ import './Auth.css';
 import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
+import { useProfile } from '../../context/ProfileContext';
 import { signUpUser, signInUser } from '../../services/users.js';
 
 export default function Auth({ isSigningUp = false }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { setUser } = useUser();
+  const { profile } = useProfile();
   const history = useHistory();
 
   const handleSubmit = async (e) => {
@@ -20,7 +22,11 @@ export default function Auth({ isSigningUp = false }) {
     } else {
       const resp = await signInUser(email, password);
       setUser({ email: resp.email, id: resp.id });
-      history.replace('/profile');
+      if (profile.name !== '') {
+        history.replace('/profile/create');
+      } else {
+        history.replace('/profile');
+      }
     }
   };
 
