@@ -19,17 +19,24 @@ const ProfileProvider = ({ children }) => {
       try {
         const response = await getProfile();
         setProfile(response);
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
       } catch (error) {
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
         setProfile({ name: '', email: '', bio: '', birthday: '' });
       } finally {
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
       }
     };
     fetchProfile();
   }, [user]);
 
-  const value = { setLoading, profile, setProfile };
+  const value = { loading, setLoading, profile, setProfile };
 
   return (
     <ProfileContext.Provider value={value}>{children}</ProfileContext.Provider>
