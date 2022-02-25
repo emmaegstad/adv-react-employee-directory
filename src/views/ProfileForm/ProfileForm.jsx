@@ -34,8 +34,7 @@ export default function ProfileForm({ isCreating = false, isEditing = false }) {
 
   return (
     <form className="ProfileForm">
-      {isEditing && <span>Editing!</span>}
-      {isCreating && <span>Creating!</span>}
+      {isCreating && <span>Please enter your profile information.</span>}
       <label htmlFor="name">
         Name:
         <input
