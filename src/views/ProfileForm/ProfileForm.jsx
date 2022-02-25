@@ -1,7 +1,7 @@
 import './ProfileForm.css';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useProfile } from '../../context/ProfileContext';
+import { useProfile } from '../../hooks/useProfile';
 import { createProfile, updateProfile } from '../../services/profiles';
 import { useUser } from '../../context/UserContext';
 
