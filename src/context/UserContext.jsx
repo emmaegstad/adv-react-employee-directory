@@ -9,6 +9,8 @@ const UserProvider = ({ children }) => {
     currentUser ? { id: currentUser.id, email: currentUser.email } : {}
   );
 
+  console.log('user', user);
+
   const value = { user, setUser };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
